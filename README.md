@@ -20,8 +20,15 @@ Il consiste en une analyse exploratoire et temporelle des données historiques d
 - `notebook.ipynb` : Analyse exploratoire et temporelle complète (EDA).
 - `app.py` : Application Streamlit interactive.
 - `rapport.pdf` : Rapport synthétique du projet.
-- `btcusd_1min_data.csv` : Jeu de données (ou lien vers Kaggle).
 - `README.md` : Description du projet.
+
+---
+
+## Jeu de données
+
+Le jeu de données est trop volumineux pour être hébergé sur GitHub.
+
+Lien Kaggle : https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
 
 ---
 
@@ -54,6 +61,8 @@ streamlit run app.py
 
 L’application sera accessible dans le navigateur à l’adresse : http://localhost:8501
 
+---
+
 ## Fonctionnalités de l’application
 
 - Visualisation interactive du prix du Bitcoin.
@@ -65,6 +74,8 @@ L’application sera accessible dans le navigateur à l’adresse : http://local
 - Affichage des moyennes mobiles.
 
 - Filtres par période.
+
+---
 
 ## Auteur
 
