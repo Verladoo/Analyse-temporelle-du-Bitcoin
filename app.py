@@ -4,29 +4,24 @@ import plotly.express as px
 
 @st.cache_data
 def load_data():
-    # Adapter le nom du fichier si besoin
-    df = pd.read_csv("btcusd_1-min_data.csv")
-    # Conversion du timestamp en datetime
-    df["Date"] = pd.to_datetime(df["Timestamp"], unit="s")
-    df = df.sort_values("Date")
-    
-    # Agrégation par jour (comme dans le notebook)
-    df_jour = df.resample("D", on="Date").agg({
-        "Open": "first",
-        "High": "max",
-        "Low": "min",
-        "Close": "last",
-        "Volume": "sum"
-    }).dropna()
-    df_jour.index.name = "Date"
-    
+    url = "https://raw.githubusercontent.com/Verladoo/Analyse-temporelle-du-Bitcoin/main/btc_daily_agg.csv"
+    df = pd.read_csv(url)
+
+
+    # On lit le fichier : la colonne "Date" devient une vraie date
+    df_jour = pd.read_csv(url, parse_dates=["Date"])
+
+    # On trie par date et on met "Date" en index (comme avant)
+    df_jour = df_jour.sort_values("Date")
+    df_jour.set_index("Date", inplace=True)
+
     # Moyennes mobiles (30j et 90j)
     df_jour["MM_30"] = df_jour["Close"].rolling(window=30).mean()
     df_jour["MM_90"] = df_jour["Close"].rolling(window=90).mean()
-    
-    # Volatilité glissante (30j) - optionnelle pour un graphique dédié
+
+    # Volatilité glissante (30j)
     df_jour["Volatilite_30j"] = df_jour["Close"].rolling(window=30).std()
-    
+
     return df_jour
 
 def main():
