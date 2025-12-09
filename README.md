@@ -17,11 +17,13 @@ Il consiste en une analyse exploratoire et temporelle des données historiques d
 
 ## Contenu du dépôt
 
-- `notebook.ipynb` : Analyse exploratoire et temporelle complète (EDA).
-- `app.py` : Application Streamlit interactive.
+- `notebook.ipynb` : Analyse exploratoire et temporelle complète (EDA) réalisée à partir du jeu de données brut.
+- `app.py` : Application Streamlit interactive (version déployée en ligne).
+- `btc_daily_agg.csv` : Jeu de données agrégé par jour, utilisé par l’application Streamlit.
+- `reductiondataframe.py` : Script Python permettant de transformer le jeu de données brut (à la minute) en données journalières.
 - `rapport.pdf` : Rapport synthétique du projet.
+- `requirements.txt` : Bibliothèques nécessaires au fonctionnement de l’application.
 - `README.md` : Description du projet.
-
 ---
 
 ## Jeu de données
@@ -29,6 +31,30 @@ Il consiste en une analyse exploratoire et temporelle des données historiques d
 Le jeu de données est trop volumineux pour être hébergé sur GitHub.
 
 Lien Kaggle : https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+
+---
+
+## Prétraitement des données
+
+Le jeu de données original fourni est très volumineux (données à la minute).  
+Afin de pouvoir l’exploiter efficacement dans l’application Streamlit, un script de réduction a été utilisé :  
+
+- `reductiondataframe.py`
+
+Ce script permet de :
+- Charger les données brutes à la minute.
+- Convertir la colonne `Timestamp` en format date.
+- Trier les données chronologiquement.
+- Agréger les données par **jour** avec les opérations suivantes :
+  - Open → première valeur de la journée  
+  - High → maximum journalier  
+  - Low → minimum journalier  
+  - Close → dernière valeur de la journée  
+  - Volume → somme journalière  
+
+Le fichier généré est :
+- `btc_daily_agg.csv`  
+Ce fichier correspond à une version allégée des données, utilisée directement par l’application Streamlit.
 
 ---
 
@@ -45,21 +71,9 @@ Lien Kaggle : https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-dat
 
 ---
 
-## Installation des bibliothèques
+## Acces au tableau de bord
 
-```bash
-pip install streamlit pandas plotly matplotlib seaborn numpy
-```
-
-## Lancement de l’application Streamlit
-
-Dans le dossier du projet, exécuter la commande suivante dans le terminale:
-
-```bash
-streamlit run app.py
-```
-
-L’application sera accessible dans le navigateur à l’adresse : http://localhost:8501
+L’application sera accessible dans le navigateur à l’adresse : https://analyse-temporelle-du-bitcoin-bqf32mpvj2ydwmf6xzrv3r.streamlit.app
 
 ---
 
@@ -79,7 +93,7 @@ L’application sera accessible dans le navigateur à l’adresse : http://local
 
 ## Auteur
 
-Projet réalisé par : Ayad-Zeddam Malik
+Projet réalisé par : Ayad-Zeddam Malik / Lopez Valentin / Abgarov Artur
 
 Cours : 8PRO408 – UQAC
 
