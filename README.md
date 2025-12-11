@@ -93,7 +93,7 @@ L’application sera accessible dans le navigateur à l’adresse : https://anal
 
 ## Auteur
 
-Projet réalisé par : Ayad-Zeddam Malik / Lopez Valentin / Abgarov Artur
+Projet réalisé par : Ayad-Zeddam Malik / Lopez Valentin / Abgarov Artur / Razafindratsima Nathan
 
 Cours : 8PRO408 – UQAC
 
